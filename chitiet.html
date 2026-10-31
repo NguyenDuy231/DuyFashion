@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Chi tiết sản phẩm - Duy Fashion</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="siteHeader"></div>
+
+    <div id="detail"></div>
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2 data-t="Đánh giá sản phẩm">
+                Đánh giá sản phẩm
+            </h2>
+
+            <p id="reviewSubtitle">
+                Chia sẻ cảm nhận của bạn về sản phẩm
+            </p>
+        </div>
+
+        <div class="review-box">
+
+            <input
+                id="reviewName"
+                type="text"
+                placeholder="Tên của bạn"
+            >
+
+            <h3 id="ratingTitle">
+                Chọn số sao
+            </h3>
+
+            <div class="star-select" id="starSelect">
+                <span onclick="chonSao(1)">★</span>
+                <span onclick="chonSao(2)">★</span>
+                <span onclick="chonSao(3)">★</span>
+                <span onclick="chonSao(4)">★</span>
+                <span onclick="chonSao(5)">★</span>
+            </div>
+
+            <p id="starText">
+                Bạn đang chọn 5 sao
+            </p>
+
+            <textarea
+                id="reviewText"
+                rows="5"
+                placeholder="Nhận xét của bạn"
+            ></textarea>
+
+            <button
+                class="btn"
+                id="reviewButton"
+                onclick="submitReview()"
+            >
+                GỬI ĐÁNH GIÁ
+            </button>
+
+            <div id="reviews"></div>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="section-title">
+            <h2 data-t="Sản phẩm liên quan">
+                Sản phẩm liên quan
+            </h2>
+        </div>
+
+        <div
+            class="grid"
+            id="related"
+        ></div>
+
+    </section>
+
+    <div id="siteFooter"></div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        let currentProduct;
+        let selectedColor = "";
+        let selectedSize = "";
+        let qty = 1;
+        let soSaoDaChon = 5;
+
+        function renderDetail() {
+            let params = new URLSearchParams(location.search);
+
+            let key = params.get("sp") || "aothun";
+
+            currentProduct =
+                products.find(x => x.key === key) ||
+                products[0];
+
+            document.title =
+                tenSanPham(currentProduct) +
+                " - Duy Fashion";
+
+            let danhSachMau = mauSanPham(currentProduct);
+
+            document.getElementById("detail").innerHTML = `
+                <section class="detail">
+
+                    <div>
+                        <img
+                            src="${currentProduct.hinh}"
+                            alt="${tenSanPham(currentProduct)}"
+                        >
+                    </div>
+
+                    <div>
+
+                        <p>
+                            ${currentProduct.ma}
+                        </p>
+
+                        <h1>
+                            ${tenSanPham(currentProduct)}
+                        </h1>
+
+                        <div class="stars">
+                            ★★★★★
+                            <span>4.8</span>
+                        </div>
+
+                        <p class="detail-price">
+                            ${money(currentProduct.gia)}
+                        </p>
+
+                        <p>
+                            ${text(
+                                "Sản phẩm thời trang tại Duy Fashion. Vui lòng chọn màu sắc, kích thước và số lượng trước khi thêm vào giỏ hàng.",
+                                "Fashion product from Duy Fashion. Please select a color, size and quantity before adding it to your cart."
+                            )}
+                        </p>
+
+                        <h3>
+                            ${text(
+                                "Màu sắc",
+                                "Color"
+                            )}
+                        </h3>
+
+                        <div
+                            class="choices"
+                            id="colors"
+                        >
+                            ${danhSachMau.map((mau, index) => `
+                                <button
+                                    onclick="chooseColor(${index}, this)"
+                                >
+                                    ${mau}
+                                </button>
+                            `).join("")}
+                        </div>
+
+                        <h3>
+                            ${text(
+                                "Kích thước",
+                                "Size"
+                            )}
+                        </h3>
+
+                        <div
+                            class="choices"
+                            id="sizes"
+                        >
+                            ${currentProduct.size.map(size => `
+                                <button
+                                    onclick="chooseSize('${size}', this)"
+                                >
+                                    ${size}
+                                </button>
+                            `).join("")}
+                        </div>
+
+                        <h3>
+                            ${text(
+                                "Số lượng",
+                                "Quantity"
+                            )}
+                        </h3>
+
+                        <div class="qty">
+
+                            <button onclick="changeQty(-1)">
+                                −
+                            </button>
+
+                            <input
+                                id="qty"
+                                value="1"
+                                readonly
+                            >
+
+                            <button onclick="changeQty(1)">
+                                +
+                            </button>
+
+                        </div>
+
+                        <button
+                            class="btn"
+                            onclick="buy()"
+                        >
+                            ${text(
+                                "THÊM VÀO GIỎ HÀNG",
+                                "ADD TO CART"
+                            )}
+                        </button>
+
+                        <button
+                            class="btn"
+                            id="detailFavorite"
+                            onclick="favoriteDetail()"
+                        >
+                            ${yeuThich.includes(currentProduct.key)
+                                ? text("♥ ĐÃ YÊU THÍCH", "♥ FAVORITED")
+                                : text("♡ YÊU THÍCH", "♡ FAVORITE")
+                            }
+                        </button>
+
+                    </div>
+
+                </section>
+            `;
+
+            if (currentProduct.mau.length === 1) {
+                selectedColor =
+                    currentProduct.mau[0];
+
+                let nutMau =
+                    document.querySelector(
+                        "#colors button"
+                    );
+
+                if (nutMau) {
+                    nutMau.classList.add(
+                        "active"
+                    );
+                }
+            }
+
+            if (
+                currentProduct.size.length === 1 &&
+                currentProduct.size[0] === "Freesize"
+            ) {
+                selectedSize = "Freesize";
+
+                let nutSize =
+                    document.querySelector(
+                        "#sizes button"
+                    );
+
+                if (nutSize) {
+                    nutSize.classList.add(
+                        "active"
+                    );
+                }
+            }
+
+            let lienQuan =
+                products
+                    .filter(p =>
+                        p.nhom === currentProduct.nhom &&
+                        p.key !== currentProduct.key
+                    )
+                    .slice(0, 4);
+
+            document.getElementById(
+                "related"
+            ).innerHTML =
+                lienQuan.map(card).join("");
+
+            chonSao(5);
+
+            renderReviews();
+
+            translateReview();
+        }
+
+        function chooseColor(index, button) {
+            selectedColor =
+                currentProduct.mau[index];
+
+            document
+                .querySelectorAll(
+                    "#colors button"
+                )
+                .forEach(x => {
+                    x.classList.remove(
+                        "active"
+                    );
+                });
+
+            button.classList.add(
+                "active"
+            );
+        }
+
+        function chooseSize(size, button) {
+            selectedSize = size;
+
+            document
+                .querySelectorAll(
+                    "#sizes button"
+                )
+                .forEach(x => {
+                    x.classList.remove(
+                        "active"
+                    );
+                });
+
+            button.classList.add(
+                "active"
+            );
+        }
+
+        function changeQty(number) {
+            qty += number;
+
+            if (qty < 1) {
+                qty = 1;
+            }
+
+            if (qty > 10) {
+                qty = 10;
+            }
+
+            document.getElementById(
+                "qty"
+            ).value = qty;
+        }
+
+        function buy() {
+            if (!selectedColor) {
+                toast(
+                    text(
+                        "Vui lòng chọn màu sắc",
+                        "Please select a color"
+                    )
+                );
+
+                return;
+            }
+
+            if (!selectedSize) {
+                toast(
+                    text(
+                        "Vui lòng chọn kích thước",
+                        "Please select a size"
+                    )
+                );
+
+                return;
+            }
+
+            addCart(
+                currentProduct,
+                selectedColor,
+                selectedSize,
+                qty
+            );
+        }
+
+        function favoriteDetail() {
+            let index =
+                yeuThich.indexOf(
+                    currentProduct.key
+                );
+
+            if (index === -1) {
+                yeuThich.push(
+                    currentProduct.key
+                );
+
+                toast(
+                    text(
+                        "Đã thêm vào yêu thích",
+                        "Added to favorites"
+                    )
+                );
+            } else {
+                yeuThich.splice(
+                    index,
+                    1
+                );
+
+                toast(
+                    text(
+                        "Đã bỏ khỏi yêu thích",
+                        "Removed from favorites"
+                    )
+                );
+            }
+
+            localStorage.setItem(
+                "yeuThich",
+                JSON.stringify(yeuThich)
+            );
+
+            let button =
+                document.getElementById(
+                    "detailFavorite"
+                );
+
+            if (
+                yeuThich.includes(
+                    currentProduct.key
+                )
+            ) {
+                button.textContent =
+                    text(
+                        "♥ ĐÃ YÊU THÍCH",
+                        "♥ FAVORITED"
+                    );
+            } else {
+                button.textContent =
+                    text(
+                        "♡ YÊU THÍCH",
+                        "♡ FAVORITE"
+                    );
+            }
+        }
+
+        function chonSao(soSao) {
+            soSaoDaChon = soSao;
+
+            document
+                .querySelectorAll(
+                    "#starSelect span"
+                )
+                .forEach(
+                    (sao, index) => {
+                        if (
+                            index < soSao
+                        ) {
+                            sao.classList.add(
+                                "selected"
+                            );
+                        } else {
+                            sao.classList.remove(
+                                "selected"
+                            );
+                        }
+                    }
+                );
+
+            let starText =
+                document.getElementById(
+                    "starText"
+                );
+
+            if (starText) {
+                starText.textContent =
+                    text(
+                        "Bạn đang chọn " +
+                            soSao +
+                            " sao",
+                        "You selected " +
+                            soSao +
+                            " stars"
+                    );
+            }
+        }
+
+        function submitReview() {
+            let name =
+                document
+                    .getElementById(
+                        "reviewName"
+                    )
+                    .value
+                    .trim();
+
+            let noiDung =
+                document
+                    .getElementById(
+                        "reviewText"
+                    )
+                    .value
+                    .trim();
+
+            if (!name || !noiDung) {
+                toast(
+                    text(
+                        "Vui lòng nhập tên và nhận xét",
+                        "Please enter your name and review"
+                    )
+                );
+
+                return;
+            }
+
+            let all =
+                JSON.parse(
+                    localStorage.getItem(
+                        "reviews"
+                    )
+                ) || {};
+
+            if (
+                !all[currentProduct.key]
+            ) {
+                all[currentProduct.key] =
+                    [];
+            }
+
+            all[currentProduct.key]
+                .unshift({
+                    n: name,
+                    t: noiDung,
+                    s: soSaoDaChon,
+                    d: new Date()
+                        .toLocaleDateString(
+                            "vi-VN"
+                        )
+                });
+
+            localStorage.setItem(
+                "reviews",
+                JSON.stringify(all)
+            );
+
+            document.getElementById(
+                "reviewText"
+            ).value = "";
+
+            toast(
+                text(
+                    "Đã gửi đánh giá thành công",
+                    "Review submitted successfully"
+                )
+            );
+
+            chonSao(5);
+
+            renderReviews();
+        }
+
+        function renderReviews() {
+            let all =
+                JSON.parse(
+                    localStorage.getItem(
+                        "reviews"
+                    )
+                ) || {};
+
+            let list =
+                all[currentProduct.key] ||
+                [];
+
+            let reviews =
+                document.getElementById(
+                    "reviews"
+                );
+
+            if (!list.length) {
+                reviews.innerHTML = `
+                    <p>
+                        ${text(
+                            "Chưa có nhận xét mới.",
+                            "There are no reviews yet."
+                        )}
+                    </p>
+                `;
+
+                return;
+            }
+
+            reviews.innerHTML =
+                list.map(review => {
+
+                    let saoDay =
+                        "★".repeat(
+                            review.s
+                        );
+
+                    let saoTrong =
+                        "☆".repeat(
+                            5 - review.s
+                        );
+
+                    return `
+                        <div class="review">
+
+                            <strong>
+                                ${review.n}
+                            </strong>
+
+                            <div class="stars">
+                                ${saoDay}${saoTrong}
+                            </div>
+
+                            <small>
+                                ${review.d}
+                            </small>
+
+                            <p>
+                                ${review.t}
+                            </p>
+
+                        </div>
+                    `;
+                }).join("");
+        }
+
+        function translateReview() {
+            if (
+                ngonNgu !== "en"
+            ) {
+                return;
+            }
+
+            let subtitle =
+                document.getElementById(
+                    "reviewSubtitle"
+                );
+
+            let title =
+                document.getElementById(
+                    "ratingTitle"
+                );
+
+            let button =
+                document.getElementById(
+                    "reviewButton"
+                );
+
+            let name =
+                document.getElementById(
+                    "reviewName"
+                );
+
+            let review =
+                document.getElementById(
+                    "reviewText"
+                );
+
+            if (subtitle) {
+                subtitle.textContent =
+                    "Share your experience with this product";
+            }
+
+            if (title) {
+                title.textContent =
+                    "Select rating";
+            }
+
+            if (button) {
+                button.textContent =
+                    "SUBMIT REVIEW";
+            }
+
+            if (name) {
+                name.placeholder =
+                    "Your name";
+            }
+
+            if (review) {
+                review.placeholder =
+                    "Your review";
+            }
+        }
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+                renderDetail();
+            }
+        );
+    </script>
+
+</body>
+
+</html>

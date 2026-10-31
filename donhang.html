@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Đơn hàng - Duy Fashion</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="siteHeader"></div>
+
+<section class="section">
+
+<div class="section-title">
+<h1 data-t="Đơn hàng">Đơn hàng</h1>
+<p>Lịch sử mua hàng của bạn</p>
+</div>
+
+<div id="orders"></div>
+
+</section>
+
+<div id="siteFooter"></div>
+
+<script src="js/script.js"></script>
+
+<script>
+const sts=[
+"Đã đặt hàng",
+"Đang xử lý",
+"Đang giao",
+"Đã giao"
+];
+
+function renderOrders(){
+let a=JSON.parse(localStorage.getItem("donHang"))||[];
+let e=document.getElementById("orders");
+
+if(!a.length){
+e.innerHTML=`
+<div class="empty">
+Bạn chưa có đơn hàng nào.
+<br><br>
+<a class="btn" href="sanpham.html">MUA SẮM NGAY</a>
+</div>
+`;
+return;
+}
+
+e.innerHTML=a.map((o,i)=>`
+<div class="order">
+
+<div class="order-head">
+
+<div>
+<h3>${o.id}</h3>
+<small>${o.date}</small>
+</div>
+
+<span class="status">
+${sts[o.status]}
+</span>
+
+</div>
+
+<hr>
+
+${o.items.map(x=>`
+<p>
+<b>${x.ten}</b>
+<br>
+Màu: ${x.color} · Size: ${x.size} · Số lượng: ${x.qty}
+<br>
+${money(x.gia*x.qty)}
+</p>
+`).join("")}
+
+<hr>
+
+<p>
+Người nhận:
+<b>${o.name}</b>
+</p>
+
+<p>
+Số điện thoại:
+${o.phone}
+</p>
+
+<p>
+Email:
+${o.email}
+</p>
+
+<p>
+Địa chỉ:
+${o.address}
+</p>
+
+<p>
+Thanh toán:
+${o.pay}
+</p>
+
+<h3>
+Tổng:
+${money(o.total)}
+</h3>
+
+${o.status<3?`
+<button class="btn" onclick="nextStatus(${i})">
+MÔ PHỎNG TRẠNG THÁI TIẾP THEO
+</button>
+`:""}
+
+</div>
+`).join("");
+}
+
+function nextStatus(i){
+let a=JSON.parse(localStorage.getItem("donHang"))||[];
+
+if(a[i].status<3){
+a[i].status++;
+}
+
+localStorage.setItem("donHang",JSON.stringify(a));
+
+renderOrders();
+}
+
+document.addEventListener("DOMContentLoaded",renderOrders);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Trung tâm hỗ trợ - Duy Fashion</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="siteHeader"></div>
+
+    <section class="support-hero">
+
+        <div class="support-hero-content">
+
+            <p>DUY FASHION SUPPORT</p>
+
+            <h1 id="supportHeroTitle">
+                TRUNG TÂM HỖ TRỢ
+            </h1>
+
+            <p id="supportHeroText">
+                Bạn cần hỗ trợ điều gì? Tìm nhanh thông tin về mua hàng,
+                thanh toán, vận chuyển, đổi trả và đơn hàng tại Duy Fashion.
+            </p>
+
+            <div class="support-search">
+                <input
+                    type="text"
+                    id="supportSearch"
+                    placeholder="Nhập nội dung bạn cần hỗ trợ..."
+                >
+
+                <button onclick="searchSupport()" id="supportSearchButton">
+                    TÌM KIẾM
+                </button>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="section-title">
+            <p>DUY FASHION</p>
+
+            <h2 id="supportCategoryTitle">
+                BẠN CẦN HỖ TRỢ GÌ?
+            </h2>
+
+            <p id="supportCategoryText">
+                Chọn nội dung bạn đang quan tâm
+            </p>
+        </div>
+
+        <div class="support-grid">
+
+            <div class="support-card">
+                <div class="support-icon">🛍</div>
+
+                <h3 id="buyTitle">
+                    Hướng dẫn mua hàng
+                </h3>
+
+                <p id="buyText">
+                    Hướng dẫn tìm kiếm sản phẩm, lựa chọn màu sắc,
+                    kích thước và đặt hàng trên website.
+                </p>
+
+                <a href="#shoppingGuide" id="buyButton">
+                    XEM HƯỚNG DẪN →
+                </a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">🚚</div>
+
+                <h3 id="shippingTitle">
+                    Vận chuyển
+                </h3>
+
+                <p id="shippingText">
+                    Thông tin về phí vận chuyển, thời gian giao hàng
+                    và quá trình nhận sản phẩm.
+                </p>
+
+                <a href="#shippingGuide" id="shippingButton">
+                    XEM CHI TIẾT →
+                </a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">↻</div>
+
+                <h3 id="returnTitle">
+                    Đổi trả sản phẩm
+                </h3>
+
+                <p id="returnText">
+                    Tìm hiểu điều kiện đổi trả và cách gửi yêu cầu
+                    hỗ trợ khi sản phẩm gặp vấn đề.
+                </p>
+
+                <a href="#returnGuide" id="returnButton">
+                    XEM CHÍNH SÁCH →
+                </a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">💳</div>
+
+                <h3 id="paymentTitle">
+                    Thanh toán
+                </h3>
+
+                <p id="paymentText">
+                    Thông tin về các phương thức thanh toán
+                    được hỗ trợ khi đặt hàng.
+                </p>
+
+                <a href="#paymentGuide" id="paymentButton">
+                    XEM CHI TIẾT →
+                </a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">📦</div>
+
+                <h3 id="trackingTitle">
+                    Theo dõi đơn hàng
+                </h3>
+
+                <p id="trackingText">
+                    Kiểm tra các đơn hàng đã đặt và theo dõi
+                    trạng thái xử lý đơn hàng.
+                </p>
+
+                <a href="donhang.html" id="trackingButton">
+                    XEM ĐƠN HÀNG →
+                </a>
+            </div>
+
+            <div class="support-card">
+                <div class="support-icon">☎</div>
+
+                <h3 id="contactSupportTitle">
+                    Liên hệ hỗ trợ
+                </h3>
+
+                <p id="contactSupportText">
+                    Liên hệ Duy Fashion nếu bạn cần tư vấn thêm
+                    về sản phẩm hoặc đơn hàng.
+                </p>
+
+                <a href="lienhe.html" id="contactSupportButton">
+                    LIÊN HỆ NGAY →
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="support-detail" id="shoppingGuide">
+
+        <div class="support-number">
+            01
+        </div>
+
+        <div>
+            <p class="support-small">SHOPPING GUIDE</p>
+
+            <h2 id="shoppingGuideTitle">
+                HƯỚNG DẪN MUA HÀNG
+            </h2>
+
+            <div class="support-steps">
+
+                <div>
+                    <strong>01</strong>
+
+                    <h3 id="step1Title">
+                        Tìm sản phẩm
+                    </h3>
+
+                    <p id="step1Text">
+                        Truy cập trang Sản phẩm hoặc sử dụng thanh tìm kiếm
+                        để tìm sản phẩm bạn muốn mua.
+                    </p>
+                </div>
+
+                <div>
+                    <strong>02</strong>
+
+                    <h3 id="step2Title">
+                        Chọn sản phẩm
+                    </h3>
+
+                    <p id="step2Text">
+                        Xem chi tiết sản phẩm và lựa chọn màu sắc,
+                        kích thước cùng số lượng phù hợp.
+                    </p>
+                </div>
+
+                <div>
+                    <strong>03</strong>
+
+                    <h3 id="step3Title">
+                        Thêm vào giỏ
+                    </h3>
+
+                    <p id="step3Text">
+                        Nhấn Thêm vào giỏ hàng và kiểm tra lại
+                        các sản phẩm trước khi thanh toán.
+                    </p>
+                </div>
+
+                <div>
+                    <strong>04</strong>
+
+                    <h3 id="step4Title">
+                        Đặt hàng
+                    </h3>
+
+                    <p id="step4Text">
+                        Điền thông tin nhận hàng, lựa chọn phương thức
+                        thanh toán và hoàn tất đơn hàng.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section" id="shippingGuide">
+
+        <div class="section-title">
+            <p>DELIVERY INFORMATION</p>
+
+            <h2 id="deliveryTitle">
+                THÔNG TIN VẬN CHUYỂN
+            </h2>
+        </div>
+
+        <div class="info-grid">
+
+            <div class="box support-info-box">
+                <span>🚚</span>
+
+                <h3 id="delivery1Title">
+                    Giao hàng
+                </h3>
+
+                <p id="delivery1Text">
+                    Duy Fashion hỗ trợ giao hàng đến địa chỉ
+                    khách hàng cung cấp khi đặt hàng.
+                </p>
+            </div>
+
+            <div class="box support-info-box">
+                <span>⏱</span>
+
+                <h3 id="delivery2Title">
+                    Thời gian
+                </h3>
+
+                <p id="delivery2Text">
+                    Thời gian nhận hàng có thể thay đổi tùy
+                    theo khu vực và tình trạng đơn hàng.
+                </p>
+            </div>
+
+            <div class="box support-info-box">
+                <span>✓</span>
+
+                <h3 id="delivery3Title">
+                    Kiểm tra đơn
+                </h3>
+
+                <p id="delivery3Text">
+                    Khách hàng có thể theo dõi trạng thái
+                    đơn hàng tại trang Đơn hàng của tôi.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="support-policy" id="returnGuide">
+
+        <div class="support-policy-content">
+
+            <p class="support-small">
+                DUY FASHION POLICY
+            </p>
+
+            <h2 id="returnPolicyTitle">
+                CHÍNH SÁCH ĐỔI TRẢ
+            </h2>
+
+            <p id="returnPolicyText">
+                Duy Fashion hỗ trợ khách hàng khi sản phẩm nhận được
+                không đúng với thông tin đơn hàng hoặc gặp vấn đề
+                trong quá trình giao nhận.
+            </p>
+
+            <div class="policy-list">
+
+                <div>
+                    <span>✓</span>
+                    <p id="policy1">
+                        Sản phẩm cần giữ nguyên tình trạng ban đầu.
+                    </p>
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    <p id="policy2">
+                        Cung cấp thông tin đơn hàng khi yêu cầu hỗ trợ.
+                    </p>
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    <p id="policy3">
+                        Liên hệ Duy Fashion để được hướng dẫn đổi trả.
+                    </p>
+                </div>
+
+            </div>
+
+            <a class="btn" href="lienhe.html" id="returnContactButton">
+                LIÊN HỆ HỖ TRỢ
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="section" id="paymentGuide">
+
+        <div class="section-title">
+            <p>PAYMENT</p>
+
+            <h2 id="paymentSectionTitle">
+                THANH TOÁN
+            </h2>
+
+            <p id="paymentSectionText">
+                Lựa chọn phương thức phù hợp khi hoàn tất đơn hàng
+            </p>
+        </div>
+
+        <div class="payment-support-grid">
+
+            <div class="payment-support-card">
+                <div>💵</div>
+                <h3>COD</h3>
+
+                <p id="codText">
+                    Thanh toán khi nhận hàng
+                </p>
+            </div>
+
+            <div class="payment-support-card">
+                <div>🏦</div>
+
+                <h3 id="bankTitle">
+                    Chuyển khoản
+                </h3>
+
+                <p id="bankText">
+                    Thanh toán bằng chuyển khoản ngân hàng
+                </p>
+            </div>
+
+            <div class="payment-support-card">
+                <div>🔒</div>
+
+                <h3 id="safeTitle">
+                    An toàn
+                </h3>
+
+                <p id="safeText">
+                    Thông tin đặt hàng được lưu trên trình duyệt
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="faq-section">
+
+        <div class="section-title">
+            <p>FAQ</p>
+
+            <h2 id="faqTitle">
+                CÂU HỎI THƯỜNG GẶP
+            </h2>
+
+            <p id="faqSubtitle">
+                Một số câu hỏi thường gặp khi mua sắm tại Duy Fashion
+            </p>
+        </div>
+
+        <div class="faq-list">
+
+            <div class="faq-item">
+                <button onclick="toggleFaq(this)">
+                    <span id="faq1Question">
+                        Làm sao để tìm sản phẩm nhanh?
+                    </span>
+                    <b>+</b>
+                </button>
+
+                <div class="faq-answer">
+                    <p id="faq1Answer">
+                        Bạn có thể sử dụng thanh tìm kiếm phía trên
+                        hoặc bộ lọc tại trang Sản phẩm.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button onclick="toggleFaq(this)">
+                    <span id="faq2Question">
+                        Tôi có thể xem lại đơn hàng ở đâu?
+                    </span>
+                    <b>+</b>
+                </button>
+
+                <div class="faq-answer">
+                    <p id="faq2Answer">
+                        Bạn có thể truy cập mục Đơn hàng trên thanh menu
+                        để xem các đơn hàng đã đặt.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button onclick="toggleFaq(this)">
+                    <span id="faq3Question">
+                        Làm sao để chọn đúng kích thước?
+                    </span>
+                    <b>+</b>
+                </button>
+
+                <div class="faq-answer">
+                    <p id="faq3Answer">
+                        Tại trang chi tiết sản phẩm, bạn có thể xem
+                        các kích thước hiện có và lựa chọn trước khi thêm vào giỏ.
+                    </p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button onclick="toggleFaq(this)">
+                    <span id="faq4Question">
+                        Tôi cần hỗ trợ thêm thì làm thế nào?
+                    </span>
+                    <b>+</b>
+                </button>
+
+                <div class="faq-answer">
+                    <p id="faq4Answer">
+                        Bạn có thể truy cập trang Liên hệ và gửi nội dung
+                        cần hỗ trợ cho Duy Fashion.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="support-contact">
+
+        <div>
+            <p>DUY FASHION</p>
+
+            <h2 id="needHelpTitle">
+                VẪN CẦN HỖ TRỢ?
+            </h2>
+
+            <p id="needHelpText">
+                Đội ngũ Duy Fashion luôn sẵn sàng hỗ trợ
+                các vấn đề liên quan đến sản phẩm và đơn hàng.
+            </p>
+        </div>
+
+        <div class="support-contact-buttons">
+
+            <a class="support-white-btn" href="lienhe.html" id="contactNowButton">
+                LIÊN HỆ NGAY
+            </a>
+
+            <a class="support-outline-btn" href="donhang.html" id="viewOrderButton">
+                XEM ĐƠN HÀNG
+            </a>
+
+        </div>
+
+    </section>
+
+    <div id="siteFooter"></div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        function toggleFaq(button) {
+            let item = button.parentElement;
+            let answer = item.querySelector(".faq-answer");
+            let icon = button.querySelector("b");
+
+            if (item.classList.contains("open")) {
+                item.classList.remove("open");
+                answer.style.maxHeight = null;
+                icon.textContent = "+";
+            } else {
+                document.querySelectorAll(".faq-item").forEach(x => {
+                    x.classList.remove("open");
+                    x.querySelector(".faq-answer").style.maxHeight = null;
+                    x.querySelector("b").textContent = "+";
+                });
+
+                item.classList.add("open");
+                answer.style.maxHeight = answer.scrollHeight + "px";
+                icon.textContent = "−";
+            }
+        }
+
+        function searchSupport() {
+            let q = document
+                .getElementById("supportSearch")
+                .value
+                .trim()
+                .toLowerCase();
+
+            if (!q) {
+                toast(
+                    text(
+                        "Vui lòng nhập nội dung cần hỗ trợ",
+                        "Please enter what you need help with"
+                    )
+                );
+                return;
+            }
+
+            if (
+                q.includes("giao") ||
+                q.includes("ship") ||
+                q.includes("vận chuyển") ||
+                q.includes("delivery")
+            ) {
+                document
+                    .getElementById("shippingGuide")
+                    .scrollIntoView({ behavior: "smooth" });
+                return;
+            }
+
+            if (
+                q.includes("đổi") ||
+                q.includes("trả") ||
+                q.includes("return")
+            ) {
+                document
+                    .getElementById("returnGuide")
+                    .scrollIntoView({ behavior: "smooth" });
+                return;
+            }
+
+            if (
+                q.includes("thanh toán") ||
+                q.includes("payment") ||
+                q.includes("cod") ||
+                q.includes("chuyển khoản")
+            ) {
+                document
+                    .getElementById("paymentGuide")
+                    .scrollIntoView({ behavior: "smooth" });
+                return;
+            }
+
+            if (
+                q.includes("mua") ||
+                q.includes("đặt") ||
+                q.includes("size") ||
+                q.includes("shopping")
+            ) {
+                document
+                    .getElementById("shoppingGuide")
+                    .scrollIntoView({ behavior: "smooth" });
+                return;
+            }
+
+            if (
+                q.includes("đơn hàng") ||
+                q.includes("order")
+            ) {
+                location.href = "donhang.html";
+                return;
+            }
+
+            toast(
+                text(
+                    "Bạn có thể xem câu hỏi thường gặp hoặc liên hệ Duy Fashion",
+                    "Please check the FAQ or contact Duy Fashion"
+                )
+            );
+        }
+
+        document
+            .getElementById("supportSearch")
+            .addEventListener("keydown", e => {
+                if (e.key === "Enter") {
+                    searchSupport();
+                }
+            });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (ngonNgu === "en") {
+                document.getElementById("supportHeroTitle").textContent =
+                    "SUPPORT CENTER";
+
+                document.getElementById("supportHeroText").textContent =
+                    "How can we help you? Find information about shopping, payment, shipping, returns and your Duy Fashion orders.";
+
+                document.getElementById("supportSearch").placeholder =
+                    "What do you need help with?";
+
+                document.getElementById("supportSearchButton").textContent =
+                    "SEARCH";
+
+                document.getElementById("supportCategoryTitle").textContent =
+                    "HOW CAN WE HELP?";
+
+                document.getElementById("supportCategoryText").textContent =
+                    "Choose the topic you are interested in";
+
+                document.getElementById("buyTitle").textContent =
+                    "Shopping guide";
+
+                document.getElementById("buyText").textContent =
+                    "Learn how to search for products, choose colors and sizes, and place an order.";
+
+                document.getElementById("buyButton").textContent =
+                    "VIEW GUIDE →";
+
+                document.getElementById("shippingTitle").textContent =
+                    "Shipping";
+
+                document.getElementById("shippingText").textContent =
+                    "Information about shipping, delivery times and receiving your products.";
+
+                document.getElementById("shippingButton").textContent =
+                    "VIEW DETAILS →";
+
+                document.getElementById("returnTitle").textContent =
+                    "Returns";
+
+                document.getElementById("returnText").textContent =
+                    "Learn about return conditions and how to request support.";
+
+                document.getElementById("returnButton").textContent =
+                    "VIEW POLICY →";
+
+                document.getElementById("paymentTitle").textContent =
+                    "Payment";
+
+                document.getElementById("paymentText").textContent =
+                    "Information about available payment methods when placing an order.";
+
+                document.getElementById("paymentButton").textContent =
+                    "VIEW DETAILS →";
+
+                document.getElementById("trackingTitle").textContent =
+                    "Order tracking";
+
+                document.getElementById("trackingText").textContent =
+                    "View your orders and follow their current status.";
+
+                document.getElementById("trackingButton").textContent =
+                    "VIEW ORDERS →";
+
+                document.getElementById("contactSupportTitle").textContent =
+                    "Contact support";
+
+                document.getElementById("contactSupportText").textContent =
+                    "Contact Duy Fashion if you need more help with products or orders.";
+
+                document.getElementById("contactSupportButton").textContent =
+                    "CONTACT US →";
+
+                document.getElementById("shoppingGuideTitle").textContent =
+                    "SHOPPING GUIDE";
+
+                document.getElementById("step1Title").textContent =
+                    "Find products";
+
+                document.getElementById("step1Text").textContent =
+                    "Visit the Products page or use the search bar to find the product you want.";
+
+                document.getElementById("step2Title").textContent =
+                    "Choose a product";
+
+                document.getElementById("step2Text").textContent =
+                    "View product details and select a suitable color, size and quantity.";
+
+                document.getElementById("step3Title").textContent =
+                    "Add to cart";
+
+                document.getElementById("step3Text").textContent =
+                    "Add the product to your cart and review your items before checkout.";
+
+                document.getElementById("step4Title").textContent =
+                    "Place order";
+
+                document.getElementById("step4Text").textContent =
+                    "Enter delivery information, choose a payment method and complete your order.";
+
+                document.getElementById("deliveryTitle").textContent =
+                    "SHIPPING INFORMATION";
+
+                document.getElementById("delivery1Title").textContent =
+                    "Delivery";
+
+                document.getElementById("delivery1Text").textContent =
+                    "Duy Fashion delivers orders to the address provided by the customer.";
+
+                document.getElementById("delivery2Title").textContent =
+                    "Delivery time";
+
+                document.getElementById("delivery2Text").textContent =
+                    "Delivery times may vary depending on the area and order status.";
+
+                document.getElementById("delivery3Title").textContent =
+                    "Track order";
+
+                document.getElementById("delivery3Text").textContent =
+                    "Customers can track their order status from the Orders page.";
+
+                document.getElementById("returnPolicyTitle").textContent =
+                    "RETURN POLICY";
+
+                document.getElementById("returnPolicyText").textContent =
+                    "Duy Fashion supports customers when the received product does not match the order or has a delivery issue.";
+
+                document.getElementById("policy1").textContent =
+                    "Products should remain in their original condition.";
+
+                document.getElementById("policy2").textContent =
+                    "Provide your order information when requesting support.";
+
+                document.getElementById("policy3").textContent =
+                    "Contact Duy Fashion for return instructions.";
+
+                document.getElementById("returnContactButton").textContent =
+                    "CONTACT SUPPORT";
+
+                document.getElementById("paymentSectionTitle").textContent =
+                    "PAYMENT";
+
+                document.getElementById("paymentSectionText").textContent =
+                    "Choose a suitable payment method when completing your order.";
+
+                document.getElementById("codText").textContent =
+                    "Pay when you receive your order";
+
+                document.getElementById("bankTitle").textContent =
+                    "Bank transfer";
+
+                document.getElementById("bankText").textContent =
+                    "Pay by bank transfer";
+
+                document.getElementById("safeTitle").textContent =
+                    "Secure";
+
+                document.getElementById("safeText").textContent =
+                    "Order information is stored in your browser";
+
+                document.getElementById("faqTitle").textContent =
+                    "FREQUENTLY ASKED QUESTIONS";
+
+                document.getElementById("faqSubtitle").textContent =
+                    "Common questions when shopping at Duy Fashion";
+
+                document.getElementById("faq1Question").textContent =
+                    "How can I find products quickly?";
+
+                document.getElementById("faq1Answer").textContent =
+                    "Use the search bar at the top or the filters on the Products page.";
+
+                document.getElementById("faq2Question").textContent =
+                    "Where can I view my orders?";
+
+                document.getElementById("faq2Answer").textContent =
+                    "Open Orders from the navigation menu to view your previous orders.";
+
+                document.getElementById("faq3Question").textContent =
+                    "How do I choose the correct size?";
+
+                document.getElementById("faq3Answer").textContent =
+                    "Available sizes are displayed on the product detail page before you add the item to your cart.";
+
+                document.getElementById("faq4Question").textContent =
+                    "What if I need more support?";
+
+                document.getElementById("faq4Answer").textContent =
+                    "Visit the Contact page and send your request to Duy Fashion.";
+
+                document.getElementById("needHelpTitle").textContent =
+                    "STILL NEED HELP?";
+
+                document.getElementById("needHelpText").textContent =
+                    "The Duy Fashion team is ready to help with products and orders.";
+
+                document.getElementById("contactNowButton").textContent =
+                    "CONTACT US";
+
+                document.getElementById("viewOrderButton").textContent =
+                    "VIEW ORDERS";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

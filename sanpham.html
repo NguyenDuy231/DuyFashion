@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sản phẩm - Duy Fashion</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="siteHeader"></div>
+
+<section class="section">
+
+<div class="section-title">
+<p>DUY FASHION</p>
+<h1 data-t="Sản phẩm">Sản phẩm</h1>
+<p id="count"></p>
+</div>
+
+<div class="tools">
+
+<div class="filters">
+<button class="active" data-filter="all" onclick="filterProduct('all',this)">TẤT CẢ</button>
+<button data-filter="nam" onclick="filterProduct('nam',this)">NAM</button>
+<button data-filter="nu" onclick="filterProduct('nu',this)">NỮ</button>
+<button data-filter="phukien" onclick="filterProduct('phukien',this)">PHỤ KIỆN</button>
+</div>
+
+<div>
+<input id="searchProduct" placeholder="Tìm sản phẩm..." oninput="renderProducts()">
+
+<select id="sortProduct" onchange="renderProducts()">
+<option value="default">Mặc định</option>
+<option value="new">Mới nhất</option>
+<option value="low">Giá thấp đến cao</option>
+<option value="high">Giá cao đến thấp</option>
+</select>
+</div>
+
+</div>
+
+<div class="grid" id="productList"></div>
+
+<div class="pagination" id="pagination"></div>
+
+</section>
+
+<div id="siteFooter"></div>
+
+<script src="js/script.js"></script>
+
+<script>
+let currentFilter="all";
+let currentPage=1;
+let viewAll=false;
+const perPage=12;
+
+function filterProduct(type,button){
+currentFilter=type;
+currentPage=1;
+viewAll=false;
+document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("active"));
+button.classList.add("active");
+renderProducts();
+}
+
+function getList(){
+let q=document.getElementById("searchProduct").value.toLowerCase().trim();
+let sort=document.getElementById("sortProduct").value;
+
+let list=products.filter(p=>{
+let okCat=currentFilter==="all"||p.nhom===currentFilter;
+let okSearch=!q||p.ten.toLowerCase().includes(q)||p.ma.toLowerCase().includes(q);
+return okCat&&okSearch;
+});
+
+if(sort==="low")list.sort((a,b)=>a.gia-b.gia);
+if(sort==="high")list.sort((a,b)=>b.gia-a.gia);
+if(sort==="new")list.sort((a,b)=>b.order-a.order);
+
+return list;
+}
+
+function renderProducts(){
+let list=getList();
+document.getElementById("count").textContent=list.length+" sản phẩm";
+
+let show=list;
+
+if(!viewAll){
+let start=(currentPage-1)*perPage;
+show=list.slice(start,start+perPage);
+}
+
+document.getElementById("productList").innerHTML=show.map(card).join("");
+
+renderPagination(list.length);
+}
+
+function renderPagination(total){
+let box=document.getElementById("pagination");
+let pages=Math.ceil(total/perPage);
+let html="";
+
+if(!viewAll&&pages>1){
+html+=`<button onclick="changePage(${currentPage-1})" ${currentPage===1?"disabled":""}>←</button>`;
+
+for(let i=1;i<=pages;i++){
+html+=`<button class="${i===currentPage?"active":""}" onclick="changePage(${i})">${i}</button>`;
+}
+
+html+=`<button onclick="changePage(${currentPage+1})" ${currentPage===pages?"disabled":""}>→</button><br>`;
+}
+
+if(total>perPage){
+html+=`<button onclick="toggleAll()">${viewAll?"RÚT GỌN":"XEM TẤT CẢ"}</button>`;
+}
+
+box.innerHTML=html;
+}
+
+function changePage(p){
+let pages=Math.ceil(getList().length/perPage);
+if(p<1||p>pages)return;
+currentPage=p;
+renderProducts();
+window.scrollTo({top:250,behavior:"smooth"});
+}
+
+function toggleAll(){
+viewAll=!viewAll;
+currentPage=1;
+renderProducts();
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+let params=new URLSearchParams(location.search);
+let loai=params.get("loai");
+
+if(loai){
+currentFilter=loai;
+document.querySelectorAll(".filters button").forEach(x=>{
+x.classList.toggle("active",x.dataset.filter===loai);
+});
+}
+
+let saved=localStorage.getItem("search");
+
+if(saved){
+document.getElementById("searchProduct").value=saved;
+localStorage.removeItem("search");
+}
+
+renderProducts();
+});
+</script>
+
+</body>
+</html>

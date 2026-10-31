@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Giỏ hàng - Duy Fashion</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="siteHeader"></div>
+
+<section class="section">
+
+<div class="section-title">
+<h1 data-t="Giỏ hàng">Giỏ hàng</h1>
+</div>
+
+<div id="cart"></div>
+
+</section>
+
+<div id="siteFooter"></div>
+
+<script src="js/script.js"></script>
+
+<script>
+function renderCart(){
+let e=document.getElementById("cart");
+
+if(!gioHang.length){
+e.innerHTML=`
+<div class="empty">
+Giỏ hàng đang trống.
+<br><br>
+<a class="btn" href="sanpham.html">MUA SẮM NGAY</a>
+</div>
+`;
+return;
+}
+
+let sub=gioHang.reduce((s,x)=>s+x.gia*x.qty,0);
+let ship=sub>=500000?0:30000;
+
+e.innerHTML=`
+<table class="cart-table">
+
+<tr>
+<th>Sản phẩm</th>
+<th>Phân loại</th>
+<th>Giá</th>
+<th>Số lượng</th>
+<th>Thành tiền</th>
+<th></th>
+</tr>
+
+${gioHang.map((x,i)=>`
+<tr>
+<td>
+<img src="${x.hinh}">
+${x.ten}
+</td>
+
+<td>
+${x.color}
+<br>
+${x.size}
+</td>
+
+<td>
+${money(x.gia)}
+</td>
+
+<td>
+<button onclick="qtyChange(${i},-1)">−</button>
+${x.qty}
+<button onclick="qtyChange(${i},1)">+</button>
+</td>
+
+<td>
+${money(x.gia*x.qty)}
+</td>
+
+<td>
+<button onclick="del(${i})">Xóa</button>
+</td>
+
+</tr>
+`).join("")}
+
+</table>
+
+<div class="summary">
+
+<p>
+Tạm tính:
+<b>${money(sub)}</b>
+</p>
+
+<p>
+Phí vận chuyển:
+<b>${ship?money(ship):"Miễn phí"}</b>
+</p>
+
+<h2>
+Tổng cộng:
+${money(sub+ship)}
+</h2>
+
+<a class="btn" href="thanhtoan.html" data-t="Thanh toán">
+Thanh toán
+</a>
+
+</div>
+`;
+}
+
+function qtyChange(i,n){
+gioHang[i].qty=Math.max(1,Math.min(10,gioHang[i].qty+n));
+saveCart();
+renderCart();
+}
+
+function del(i){
+gioHang.splice(i,1);
+saveCart();
+renderCart();
+}
+
+document.addEventListener("DOMContentLoaded",renderCart);
+</script>
+
+</body>
+</html>

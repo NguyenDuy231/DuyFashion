@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Duy Fashion</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="siteHeader"></div>
+
+    <section class="hero">
+        <div>
+            <p>DUY FASHION 2026</p>
+
+            <h1 data-t="Phong cách của bạn">
+                PHONG CÁCH CỦA BẠN
+            </h1>
+
+            <p data-t="Khám phá thời trang">
+                Khám phá thời trang nam, nữ và phụ kiện với nhiều mẫu sản phẩm,
+                màu sắc và kích thước khác nhau.
+            </p>
+
+            <a
+                class="btn"
+                href="sanpham.html"
+                data-t="Mua sắm ngay"
+            >
+                MUA SẮM NGAY
+            </a>
+        </div>
+    </section>
+
+    <section class="section">
+
+        <div class="section-title">
+            <p>DUY FASHION</p>
+
+            <h2>
+                SẢN PHẨM NỔI BẬT
+            </h2>
+
+            <p>
+                Những sản phẩm được lựa chọn tại Duy Fashion
+            </p>
+        </div>
+
+        <div
+            class="grid"
+            id="homeProducts"
+        ></div>
+
+    </section>
+
+    <section class="sale-home">
+
+        <div class="sale-home-content">
+
+            <p class="sale-small">
+                DUY FASHION SALE
+            </p>
+
+            <h2 id="saleTitle">
+                ƯU ĐÃI ĐẶC BIỆT
+            </h2>
+
+            <h3 id="salePercent">
+                GIẢM GIÁ ĐẾN 30%
+            </h3>
+
+            <p id="saleDescription">
+                Khám phá những sản phẩm đang có mức giá ưu đãi tại Duy Fashion.
+                Số lượng sản phẩm có hạn.
+            </p>
+
+            <a
+                class="btn"
+                href="sanpham.html"
+                id="saleButton"
+            >
+                MUA NGAY
+            </a>
+
+        </div>
+
+        <div class="sale-home-image">
+            <img
+                src="images/sale.jpg"
+                alt="Duy Fashion Sale"
+            >
+        </div>
+
+    </section>
+
+    <section class="section about-home">
+
+        <div class="about-home-image">
+            <img
+                src="images/about.jpg"
+                alt="Duy Fashion"
+            >
+        </div>
+
+        <div class="about-home-content">
+
+            <p class="about-small">
+                DUY FASHION
+            </p>
+
+            <h2 id="aboutTitle">
+                VỀ CHÚNG TÔI
+            </h2>
+
+            <p id="aboutText1">
+                Duy Fashion mang đến các sản phẩm thời trang nam, nữ và phụ kiện
+                với phong cách trẻ trung, hiện đại và dễ phối đồ.
+            </p>
+
+            <p id="aboutText2">
+                Chúng tôi mong muốn giúp khách hàng dễ dàng lựa chọn những sản phẩm
+                phù hợp với phong cách của mình.
+            </p>
+
+            <a
+                class="btn"
+                href="gioithieu.html"
+                id="aboutButton"
+            >
+                XEM THÊM
+            </a>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="info-grid">
+
+            <div class="box">
+                <h2>33</h2>
+                <p>Sản phẩm thời trang</p>
+            </div>
+
+            <div class="box">
+                <h2>3</h2>
+                <p>Nhóm sản phẩm</p>
+            </div>
+
+            <div class="box">
+                <h2>VI / EN</h2>
+                <p>Hỗ trợ ngôn ngữ</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <div id="siteFooter"></div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("homeProducts").innerHTML =
+                products.slice(0, 8).map(card).join("");
+
+            if (ngonNgu === "en") {
+                document.getElementById("saleTitle").textContent =
+                    "SPECIAL OFFER";
+
+                document.getElementById("salePercent").textContent =
+                    "UP TO 30% OFF";
+
+                document.getElementById("saleDescription").textContent =
+                    "Discover selected products at special prices from Duy Fashion. Limited quantities available.";
+
+                document.getElementById("saleButton").textContent =
+                    "SHOP NOW";
+
+                document.getElementById("aboutTitle").textContent =
+                    "ABOUT US";
+
+                document.getElementById("aboutText1").textContent =
+                    "Duy Fashion offers men's fashion, women's fashion and accessories with youthful, modern and easy-to-style designs.";
+
+                document.getElementById("aboutText2").textContent =
+                    "We aim to help customers easily find products that match their personal style.";
+
+                document.getElementById("aboutButton").textContent =
+                    "LEARN MORE";
+            }
+        });
+    </script>
+
+</body>
+
+</html>

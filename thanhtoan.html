@@ -1,0 +1,1298 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Thanh toán - Duy Fashion</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .checkout-page {
+            width: 90%;
+            max-width: 1300px;
+            margin: 60px auto 90px;
+        }
+
+        .checkout-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .checkout-title p {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #888;
+        }
+
+        .checkout-title h1 {
+            font-size: 36px;
+            margin: 5px 0 10px;
+        }
+
+        .checkout-title span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1.4fr 0.9fr;
+            gap: 35px;
+            align-items: start;
+        }
+
+        .checkout-box {
+            border: 1px solid #e3e3e3;
+            background: #fff;
+            padding: 32px;
+        }
+
+        .checkout-box-title {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding-bottom: 18px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkout-number {
+            width: 35px;
+            height: 35px;
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .checkout-box-title h2 {
+            font-size: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            margin: 0;
+            padding: 13px 14px;
+            border: 1px solid #ccc;
+            background: #fff;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #111;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .payment-title {
+            margin: 30px 0 15px;
+            font-size: 17px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 17px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: #111;
+        }
+
+        .payment-option input {
+            width: auto;
+            margin: 4px 0 0;
+        }
+
+        .payment-option strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+
+        .payment-option p {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .checkout-summary {
+            position: sticky;
+            top: 20px;
+            background: #f7f7f7;
+            padding: 30px;
+        }
+
+        .checkout-summary h2 {
+            font-size: 21px;
+            padding-bottom: 18px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .checkout-products {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .checkout-product {
+            display: grid;
+            grid-template-columns: 70px 1fr auto;
+            gap: 13px;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .checkout-product img {
+            width: 70px;
+            height: 80px;
+            object-fit: cover;
+            background: #eee;
+        }
+
+        .checkout-product h3 {
+            font-size: 13px;
+            line-height: 1.4;
+            margin-bottom: 3px;
+        }
+
+        .checkout-product p {
+            font-size: 11px;
+            color: #777;
+        }
+
+        .checkout-product strong {
+            font-size: 13px;
+            white-space: nowrap;
+        }
+
+        .checkout-money {
+            margin-top: 18px;
+        }
+
+        .checkout-money > div {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 9px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .checkout-money .total {
+            margin-top: 10px;
+            padding-top: 18px;
+            border-top: 1px solid #ccc;
+            color: #111;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .shipping-note {
+            margin: 18px 0;
+            padding: 13px;
+            background: #fff;
+            border-left: 3px solid #111;
+            color: #666;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .checkout-button {
+            width: 100%;
+            padding: 15px;
+            border: 0;
+            background: #111;
+            color: #fff;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .checkout-button:hover {
+            background: #333;
+        }
+
+        .checkout-safe {
+            display: flex;
+            justify-content: center;
+            gap: 7px;
+            margin-top: 15px;
+            color: #777;
+            font-size: 11px;
+        }
+
+        .checkout-empty {
+            text-align: center;
+            padding: 40px 10px;
+        }
+
+        .checkout-empty h3 {
+            margin-bottom: 7px;
+        }
+
+        .checkout-empty p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .checkout-benefits {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid #e5e5e5;
+        }
+
+        .checkout-benefit {
+            padding: 25px;
+            text-align: center;
+            border-right: 1px solid #e5e5e5;
+        }
+
+        .checkout-benefit:last-child {
+            border-right: 0;
+        }
+
+        .checkout-benefit span {
+            display: block;
+            font-size: 27px;
+            margin-bottom: 7px;
+        }
+
+        .checkout-benefit h3 {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .checkout-benefit p {
+            color: #777;
+            font-size: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .checkout-page {
+                width: 94%;
+                margin-top: 40px;
+            }
+
+            .checkout-box,
+            .checkout-summary {
+                padding: 22px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .checkout-benefits {
+                width: 94%;
+                grid-template-columns: 1fr;
+            }
+
+            .checkout-benefit {
+                border-right: 0;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .checkout-benefit:last-child {
+                border-bottom: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="siteHeader"></div>
+
+    <main class="checkout-page">
+
+        <div class="checkout-title">
+            <p>DUY FASHION</p>
+
+            <h1 id="checkoutMainTitle">
+                THANH TOÁN
+            </h1>
+
+            <span id="checkoutSubtitle">
+                Hoàn tất thông tin để đặt hàng
+            </span>
+        </div>
+
+        <div class="checkout-layout">
+
+            <section class="checkout-box">
+
+                <div class="checkout-box-title">
+                    <div class="checkout-number">
+                        01
+                    </div>
+
+                    <h2 id="deliveryInfoTitle">
+                        Thông tin giao hàng
+                    </h2>
+                </div>
+
+                <form id="checkoutForm">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label id="nameLabel">
+                                Họ và tên *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customerName"
+                                placeholder="Nhập họ và tên"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label id="phoneLabel">
+                                Số điện thoại *
+                            </label>
+
+                            <input
+                                type="tel"
+                                id="customerPhone"
+                                placeholder="Nhập số điện thoại"
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="customerEmail"
+                            placeholder="example@gmail.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label id="addressLabel">
+                            Địa chỉ nhận hàng *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customerAddress"
+                            placeholder="Số nhà, tên đường, phường/xã..."
+                        >
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label id="cityLabel">
+                                Tỉnh / Thành phố *
+                            </label>
+
+                            <select id="customerCity">
+                                <option value="">
+                                    Chọn tỉnh / thành phố
+                                </option>
+
+                                <option>
+                                    TP. Hồ Chí Minh
+                                </option>
+
+                                <option>
+                                    Hà Nội
+                                </option>
+
+                                <option>
+                                    Đà Nẵng
+                                </option>
+
+                                <option>
+                                    Cần Thơ
+                                </option>
+
+                                <option>
+                                    Bình Dương
+                                </option>
+
+                                <option>
+                                    Đồng Nai
+                                </option>
+
+                                <option>
+                                    Khác
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="districtLabel">
+                                Quận / Huyện *
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customerDistrict"
+                                placeholder="Nhập quận / huyện"
+                            >
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label id="noteLabel">
+                            Ghi chú đơn hàng
+                        </label>
+
+                        <textarea
+                            id="customerNote"
+                            placeholder="Ví dụ: Giao hàng giờ hành chính..."
+                        ></textarea>
+                    </div>
+
+                    <h3
+                        class="payment-title"
+                        id="paymentMethodTitle"
+                    >
+                        Phương thức thanh toán
+                    </h3>
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="COD"
+                            checked
+                        >
+
+                        <div>
+                            <strong id="codTitle">
+                                Thanh toán khi nhận hàng (COD)
+                            </strong>
+
+                            <p id="codDescription">
+                                Thanh toán trực tiếp khi nhận được sản phẩm.
+                            </p>
+                        </div>
+
+                    </label>
+
+                    <label class="payment-option">
+
+                        <input
+                            type="radio"
+                            name="payment"
+                            value="Chuyển khoản"
+                        >
+
+                        <div>
+                            <strong id="transferTitle">
+                                Chuyển khoản ngân hàng
+                            </strong>
+
+                            <p id="transferDescription">
+                                Thông tin chuyển khoản sẽ được xác nhận sau khi đặt hàng.
+                            </p>
+                        </div>
+
+                    </label>
+
+                </form>
+
+            </section>
+
+            <aside class="checkout-summary">
+
+                <h2 id="yourOrderTitle">
+                    Đơn hàng của bạn
+                </h2>
+
+                <div
+                    id="checkoutProducts"
+                    class="checkout-products"
+                ></div>
+
+                <div id="checkoutTotals"></div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <section class="checkout-benefits">
+
+        <div class="checkout-benefit">
+            <span>🚚</span>
+
+            <h3 id="benefit1Title">
+                MIỄN PHÍ VẬN CHUYỂN
+            </h3>
+
+            <p id="benefit1Text">
+                Cho đơn hàng từ 500.000đ
+            </p>
+        </div>
+
+        <div class="checkout-benefit">
+            <span>↻</span>
+
+            <h3 id="benefit2Title">
+                HỖ TRỢ ĐỔI TRẢ
+            </h3>
+
+            <p id="benefit2Text">
+                Hỗ trợ khi sản phẩm gặp vấn đề
+            </p>
+        </div>
+
+        <div class="checkout-benefit">
+            <span>🔒</span>
+
+            <h3 id="benefit3Title">
+                MUA SẮM AN TOÀN
+            </h3>
+
+            <p id="benefit3Text">
+                Thông tin đơn hàng được bảo mật
+            </p>
+        </div>
+
+    </section>
+
+    <div id="siteFooter"></div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        function layThongTinKhachHang() {
+            let thongTin = {};
+
+            try {
+                thongTin =
+                    JSON.parse(
+                        localStorage.getItem("thongTinKhachHang")
+                    ) || {};
+            } catch {
+                thongTin = {};
+            }
+
+            let taiKhoan = {};
+
+            try {
+                taiKhoan =
+                    JSON.parse(
+                        localStorage.getItem("taiKhoan")
+                    ) || {};
+            } catch {
+                taiKhoan = {};
+            }
+
+            let tenDangNhap =
+                localStorage.getItem(
+                    "nguoiDungDangNhap"
+                ) || "";
+
+            document.getElementById(
+                "customerName"
+            ).value =
+                thongTin.name ||
+                taiKhoan.name ||
+                tenDangNhap ||
+                "";
+
+            document.getElementById(
+                "customerPhone"
+            ).value =
+                thongTin.phone ||
+                taiKhoan.phone ||
+                "";
+
+            document.getElementById(
+                "customerEmail"
+            ).value =
+                thongTin.email ||
+                taiKhoan.email ||
+                "";
+
+            document.getElementById(
+                "customerAddress"
+            ).value =
+                thongTin.address || "";
+
+            document.getElementById(
+                "customerCity"
+            ).value =
+                thongTin.city || "";
+
+            document.getElementById(
+                "customerDistrict"
+            ).value =
+                thongTin.district || "";
+
+            document.getElementById(
+                "customerNote"
+            ).value =
+                thongTin.note || "";
+        }
+
+        function luuThongTinKhachHang() {
+            let thongTin = {
+                name:
+                    document.getElementById(
+                        "customerName"
+                    ).value.trim(),
+
+                phone:
+                    document.getElementById(
+                        "customerPhone"
+                    ).value.trim(),
+
+                email:
+                    document.getElementById(
+                        "customerEmail"
+                    ).value.trim(),
+
+                address:
+                    document.getElementById(
+                        "customerAddress"
+                    ).value.trim(),
+
+                city:
+                    document.getElementById(
+                        "customerCity"
+                    ).value,
+
+                district:
+                    document.getElementById(
+                        "customerDistrict"
+                    ).value.trim(),
+
+                note:
+                    document.getElementById(
+                        "customerNote"
+                    ).value.trim()
+            };
+
+            localStorage.setItem(
+                "thongTinKhachHang",
+                JSON.stringify(thongTin)
+            );
+
+            let taiKhoan = {};
+
+            try {
+                taiKhoan =
+                    JSON.parse(
+                        localStorage.getItem("taiKhoan")
+                    ) || {};
+            } catch {
+                taiKhoan = {};
+            }
+
+            if (taiKhoan && taiKhoan.email) {
+                taiKhoan.name =
+                    thongTin.name || taiKhoan.name;
+
+                taiKhoan.phone =
+                    thongTin.phone || taiKhoan.phone;
+
+                taiKhoan.email =
+                    thongTin.email || taiKhoan.email;
+
+                localStorage.setItem(
+                    "taiKhoan",
+                    JSON.stringify(taiKhoan)
+                );
+            }
+        }
+
+        function hienThiThanhToan() {
+            let box =
+                document.getElementById(
+                    "checkoutProducts"
+                );
+
+            let totals =
+                document.getElementById(
+                    "checkoutTotals"
+                );
+
+            if (!gioHang || gioHang.length === 0) {
+                box.innerHTML = `
+                    <div class="checkout-empty">
+
+                        <h3>
+                            ${text(
+                                "Giỏ hàng đang trống",
+                                "Your cart is empty"
+                            )}
+                        </h3>
+
+                        <p>
+                            ${text(
+                                "Hãy thêm sản phẩm trước khi thanh toán.",
+                                "Please add products before checkout."
+                            )}
+                        </p>
+
+                        <a
+                            class="btn"
+                            href="sanpham.html"
+                        >
+                            ${text(
+                                "MUA SẮM NGAY",
+                                "SHOP NOW"
+                            )}
+                        </a>
+
+                    </div>
+                `;
+
+                totals.innerHTML = "";
+
+                return;
+            }
+
+            let tamTinh = 0;
+
+            box.innerHTML =
+                gioHang.map(item => {
+                    let p =
+                        products.find(
+                            x => x.key === item.key
+                        );
+
+                    if (!p) {
+                        return "";
+                    }
+
+                    let soLuong =
+                        Number(item.qty || 1);
+
+                    let thanhTien =
+                        p.gia * soLuong;
+
+                    tamTinh += thanhTien;
+
+                    let bienThe = [];
+
+                    if (item.color) {
+                        bienThe.push(
+                            item.color
+                        );
+                    }
+
+                    if (item.size) {
+                        bienThe.push(
+                            item.size
+                        );
+                    }
+
+                    return `
+                        <div class="checkout-product">
+
+                            <img
+                                src="${p.hinh}"
+                                alt="${tenSanPham(p)}"
+                            >
+
+                            <div>
+
+                                <h3>
+                                    ${tenSanPham(p)}
+                                </h3>
+
+                                <p>
+                                    ${bienThe.join(" / ")}
+                                </p>
+
+                                <p>
+                                    ${text(
+                                        "Số lượng",
+                                        "Quantity"
+                                    )}: ${soLuong}
+                                </p>
+
+                            </div>
+
+                            <strong>
+                                ${money(thanhTien)}
+                            </strong>
+
+                        </div>
+                    `;
+                }).join("");
+
+            let phiVanChuyen =
+                tamTinh >= 500000
+                    ? 0
+                    : 30000;
+
+            let tongCong =
+                tamTinh +
+                phiVanChuyen;
+
+            totals.innerHTML = `
+                <div class="checkout-money">
+
+                    <div>
+                        <span>
+                            ${text(
+                                "Tạm tính",
+                                "Subtotal"
+                            )}
+                        </span>
+
+                        <strong>
+                            ${money(tamTinh)}
+                        </strong>
+                    </div>
+
+                    <div>
+                        <span>
+                            ${text(
+                                "Phí vận chuyển",
+                                "Shipping"
+                            )}
+                        </span>
+
+                        <strong>
+                            ${
+                                phiVanChuyen === 0
+                                    ? text(
+                                        "Miễn phí",
+                                        "Free"
+                                    )
+                                    : money(
+                                        phiVanChuyen
+                                    )
+                            }
+                        </strong>
+                    </div>
+
+                    <div class="total">
+
+                        <span>
+                            ${text(
+                                "Tổng thanh toán",
+                                "Total"
+                            )}
+                        </span>
+
+                        <span>
+                            ${money(tongCong)}
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="shipping-note">
+
+                    ${
+                        tamTinh >= 500000
+
+                            ? text(
+                                "✓ Đơn hàng của bạn được miễn phí vận chuyển.",
+                                "✓ Your order qualifies for free shipping."
+                            )
+
+                            : text(
+                                "Mua từ 500.000đ để được miễn phí vận chuyển.",
+                                "Spend 500,000₫ or more to receive free shipping."
+                            )
+                    }
+
+                </div>
+
+                <button
+                    class="checkout-button"
+                    type="button"
+                    onclick="datHang(${tongCong})"
+                >
+                    ${text(
+                        "ĐẶT HÀNG NGAY",
+                        "PLACE ORDER"
+                    )}
+                </button>
+
+                <div class="checkout-safe">
+
+                    <span>🔒</span>
+
+                    <span>
+                        ${text(
+                            "Thông tin mua hàng của bạn được bảo mật",
+                            "Your shopping information is protected"
+                        )}
+                    </span>
+
+                </div>
+            `;
+        }
+
+        function datHang(tongTien) {
+            if (!gioHang || gioHang.length === 0) {
+                toast(
+                    text(
+                        "Giỏ hàng đang trống",
+                        "Your cart is empty"
+                    )
+                );
+
+                return;
+            }
+
+            let ten =
+                document.getElementById(
+                    "customerName"
+                ).value.trim();
+
+            let dienThoai =
+                document.getElementById(
+                    "customerPhone"
+                ).value.trim();
+
+            let email =
+                document.getElementById(
+                    "customerEmail"
+                ).value.trim();
+
+            let diaChi =
+                document.getElementById(
+                    "customerAddress"
+                ).value.trim();
+
+            let thanhPho =
+                document.getElementById(
+                    "customerCity"
+                ).value;
+
+            let quan =
+                document.getElementById(
+                    "customerDistrict"
+                ).value.trim();
+
+            let ghiChu =
+                document.getElementById(
+                    "customerNote"
+                ).value.trim();
+
+            let phuongThuc =
+                document.querySelector(
+                    'input[name="payment"]:checked'
+                );
+
+            if (
+                !ten ||
+                !dienThoai ||
+                !diaChi ||
+                !thanhPho ||
+                !quan
+            ) {
+                toast(
+                    text(
+                        "Vui lòng nhập đầy đủ thông tin giao hàng",
+                        "Please complete the delivery information"
+                    )
+                );
+
+                return;
+            }
+
+            if (
+                dienThoai.length < 9 ||
+                dienThoai.length > 11 ||
+                !/^[0-9]+$/.test(dienThoai)
+            ) {
+                toast(
+                    text(
+                        "Số điện thoại chưa hợp lệ",
+                        "Invalid phone number"
+                    )
+                );
+
+                return;
+            }
+
+            let thanhToan =
+                phuongThuc
+                    ? phuongThuc.value
+                    : "COD";
+
+            luuThongTinKhachHang();
+
+            let danhSachDonHang = [];
+
+            try {
+                danhSachDonHang =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "donHang"
+                        )
+                    ) || [];
+            } catch {
+                danhSachDonHang = [];
+            }
+
+            let maDon =
+                "DF" +
+                Date.now()
+                    .toString()
+                    .slice(-8);
+
+            let donMoi = {
+                id: maDon,
+
+                date:
+                    new Date()
+                        .toLocaleString(
+                            "vi-VN"
+                        ),
+
+                name: ten,
+
+                phone: dienThoai,
+
+                email: email,
+
+                address:
+                    diaChi +
+                    ", " +
+                    quan +
+                    ", " +
+                    thanhPho,
+
+                city: thanhPho,
+
+                district: quan,
+
+                note: ghiChu,
+
+                pay: thanhToan,
+
+                items:
+                    gioHang.map(
+                        item => ({
+                            ...item
+                        })
+                    ),
+
+                total:
+                    Number(tongTien),
+
+                status: 0
+            };
+
+            danhSachDonHang.unshift(
+                donMoi
+            );
+
+            localStorage.setItem(
+                "donHang",
+                JSON.stringify(
+                    danhSachDonHang
+                )
+            );
+
+            gioHang = [];
+
+            saveCart();
+
+            updateCount();
+
+            alert(
+                text(
+                    "Đặt hàng thành công!\nMã đơn hàng: " +
+                        maDon,
+
+                    "Order placed successfully!\nOrder ID: " +
+                        maDon
+                )
+            );
+
+            location.href =
+                "donhang.html";
+        }
+
+        function dichTrangThanhToan() {
+            if (ngonNgu !== "en") {
+                return;
+            }
+
+            document.getElementById(
+                "checkoutMainTitle"
+            ).textContent =
+                "CHECKOUT";
+
+            document.getElementById(
+                "checkoutSubtitle"
+            ).textContent =
+                "Complete your information to place your order";
+
+            document.getElementById(
+                "deliveryInfoTitle"
+            ).textContent =
+                "Delivery information";
+
+            document.getElementById(
+                "nameLabel"
+            ).textContent =
+                "Full name *";
+
+            document.getElementById(
+                "phoneLabel"
+            ).textContent =
+                "Phone number *";
+
+            document.getElementById(
+                "addressLabel"
+            ).textContent =
+                "Delivery address *";
+
+            document.getElementById(
+                "cityLabel"
+            ).textContent =
+                "Province / City *";
+
+            document.getElementById(
+                "districtLabel"
+            ).textContent =
+                "District *";
+
+            document.getElementById(
+                "noteLabel"
+            ).textContent =
+                "Order notes";
+
+            document.getElementById(
+                "paymentMethodTitle"
+            ).textContent =
+                "Payment method";
+
+            document.getElementById(
+                "codTitle"
+            ).textContent =
+                "Cash on delivery (COD)";
+
+            document.getElementById(
+                "codDescription"
+            ).textContent =
+                "Pay directly when you receive your order.";
+
+            document.getElementById(
+                "transferTitle"
+            ).textContent =
+                "Bank transfer";
+
+            document.getElementById(
+                "transferDescription"
+            ).textContent =
+                "Transfer information will be confirmed after placing the order.";
+
+            document.getElementById(
+                "yourOrderTitle"
+            ).textContent =
+                "Your order";
+
+            document.getElementById(
+                "benefit1Title"
+            ).textContent =
+                "FREE SHIPPING";
+
+            document.getElementById(
+                "benefit1Text"
+            ).textContent =
+                "For orders from 500,000₫";
+
+            document.getElementById(
+                "benefit2Title"
+            ).textContent =
+                "RETURN SUPPORT";
+
+            document.getElementById(
+                "benefit2Text"
+            ).textContent =
+                "Support when there is a product issue";
+
+            document.getElementById(
+                "benefit3Title"
+            ).textContent =
+                "SAFE SHOPPING";
+
+            document.getElementById(
+                "benefit3Text"
+            ).textContent =
+                "Your order information is protected";
+        }
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+                setTimeout(() => {
+                    layThongTinKhachHang();
+                    hienThiThanhToan();
+                    dichTrangThanhToan();
+                }, 50);
+            }
+        );
+    </script>
+
+</body>
+
+</html>

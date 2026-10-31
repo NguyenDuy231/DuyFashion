@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng nhập - Duy Fashion</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .account-page {
+            width: 90%;
+            max-width: 1200px;
+            margin: 65px auto 90px;
+        }
+
+        .account-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .account-heading p {
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #888;
+        }
+
+        .account-heading h1 {
+            font-size: 36px;
+            margin: 6px 0 10px;
+        }
+
+        .account-heading span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .account-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+
+        .account-login {
+            padding: 50px;
+        }
+
+        .account-register {
+            padding: 50px;
+            background: #f6f6f6;
+        }
+
+        .account-small {
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .account-login h2,
+        .account-register h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        .account-description {
+            color: #777;
+            line-height: 1.8;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .account-group {
+            margin-bottom: 18px;
+        }
+
+        .account-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .account-group input {
+            width: 100%;
+            margin: 0;
+            padding: 14px;
+            border: 1px solid #ccc;
+            outline: none;
+            background: #fff;
+        }
+
+        .account-group input:focus {
+            border-color: #111;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 75px;
+        }
+
+        .show-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 0;
+            background: transparent;
+            font-size: 11px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin: 5px 0 22px;
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            color: #666;
+        }
+
+        .remember input {
+            width: auto;
+            margin: 0;
+        }
+
+        .forgot {
+            border: 0;
+            background: transparent;
+            font-size: 12px;
+            text-decoration: underline;
+        }
+
+        .account-button {
+            width: 100%;
+            border: 1px solid #111;
+            background: #111;
+            color: #fff;
+            padding: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .account-button:hover {
+            background: #333;
+        }
+
+        .account-button-light {
+            width: 100%;
+            border: 1px solid #111;
+            background: transparent;
+            color: #111;
+            padding: 14px;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .account-button-light:hover {
+            background: #111;
+            color: #fff;
+        }
+
+        .register-benefits {
+            margin: 25px 0 30px;
+        }
+
+        .register-benefits div {
+            display: flex;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .register-benefits span {
+            width: 25px;
+            height: 25px;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #111;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 11px;
+        }
+
+        .register-benefits strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 2px;
+        }
+
+        .register-benefits p {
+            color: #777;
+            font-size: 12px;
+        }
+
+        .register-form {
+            display: none;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+        }
+
+        .register-form.show {
+            display: block;
+        }
+
+        .account-logged {
+            max-width: 650px;
+            margin: auto;
+            text-align: center;
+            padding: 60px 40px;
+            border: 1px solid #ddd;
+        }
+
+        .account-avatar {
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #111;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .account-logged h2 {
+            margin-bottom: 8px;
+        }
+
+        .account-logged > p {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .logged-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .logged-links a {
+            padding: 13px;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .logged-links a:hover {
+            background: #f5f5f5;
+        }
+
+        .account-features {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .account-feature {
+            padding: 30px;
+            text-align: center;
+            border-right: 1px solid #ddd;
+        }
+
+        .account-feature:last-child {
+            border-right: 0;
+        }
+
+        .account-feature span {
+            display: block;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .account-feature h3 {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .account-feature p {
+            color: #777;
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            .account-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .account-page {
+                width: 94%;
+                margin-top: 40px;
+            }
+
+            .account-login,
+            .account-register {
+                padding: 30px 22px;
+            }
+
+            .account-features {
+                width: 94%;
+                grid-template-columns: 1fr;
+            }
+
+            .account-feature {
+                border-right: 0;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .account-feature:last-child {
+                border-bottom: 0;
+            }
+
+            .logged-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="siteHeader"></div>
+
+    <main class="account-page">
+
+        <div class="account-heading">
+            <p>DUY FASHION MEMBER</p>
+
+            <h1 id="accountMainTitle">
+                TÀI KHOẢN
+            </h1>
+
+            <span id="accountSubtitle">
+                Đăng nhập hoặc tạo tài khoản để mua sắm thuận tiện hơn
+            </span>
+        </div>
+
+        <div id="accountContent"></div>
+
+    </main>
+
+    <section class="account-features">
+
+        <div class="account-feature">
+            <span>♡</span>
+
+            <h3 id="feature1Title">
+                LƯU SẢN PHẨM YÊU THÍCH
+            </h3>
+
+            <p id="feature1Text">
+                Dễ dàng lưu lại những sản phẩm bạn quan tâm
+            </p>
+        </div>
+
+        <div class="account-feature">
+            <span>📦</span>
+
+            <h3 id="feature2Title">
+                THEO DÕI ĐƠN HÀNG
+            </h3>
+
+            <p id="feature2Text">
+                Kiểm tra trạng thái đơn hàng nhanh chóng
+            </p>
+        </div>
+
+        <div class="account-feature">
+            <span>🛍</span>
+
+            <h3 id="feature3Title">
+                MUA SẮM THUẬN TIỆN
+            </h3>
+
+            <p id="feature3Text">
+                Trải nghiệm mua sắm đơn giản tại Duy Fashion
+            </p>
+        </div>
+
+    </section>
+
+    <div id="siteFooter"></div>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        function layTaiKhoan() {
+            return JSON.parse(
+                localStorage.getItem("taiKhoan")
+            );
+        }
+
+        function layDangNhap() {
+            return JSON.parse(
+                localStorage.getItem("dangNhap")
+            );
+        }
+
+        function hienThiTaiKhoan() {
+            let content =
+                document.getElementById("accountContent");
+
+            let dangNhap = layDangNhap();
+
+            if (dangNhap) {
+                let chuCai =
+                    dangNhap.name
+                        ? dangNhap.name.charAt(0).toUpperCase()
+                        : "D";
+
+                content.innerHTML = `
+                    <div class="account-logged">
+
+                        <div class="account-avatar">
+                            ${chuCai}
+                        </div>
+
+                        <p class="account-small">
+                            DUY FASHION MEMBER
+                        </p>
+
+                        <h2>
+                            ${text(
+                                "Xin chào, ",
+                                "Welcome, "
+                            )}${dangNhap.name}
+                        </h2>
+
+                        <p>
+                            ${dangNhap.email}
+                        </p>
+
+                        <div class="logged-links">
+
+                            <a href="donhang.html">
+                                ${text(
+                                    "ĐƠN HÀNG CỦA TÔI",
+                                    "MY ORDERS"
+                                )}
+                            </a>
+
+                            <a href="sanpham.html">
+                                ${text(
+                                    "TIẾP TỤC MUA SẮM",
+                                    "CONTINUE SHOPPING"
+                                )}
+                            </a>
+
+                        </div>
+
+                        <button
+                            class="account-button"
+                            onclick="dangXuat()"
+                        >
+                            ${text(
+                                "ĐĂNG XUẤT",
+                                "LOG OUT"
+                            )}
+                        </button>
+
+                    </div>
+                `;
+
+                return;
+            }
+
+            content.innerHTML = `
+                <div class="account-layout">
+
+                    <section class="account-login">
+
+                        <p class="account-small">
+                            WELCOME BACK
+                        </p>
+
+                        <h2>
+                            ${text(
+                                "Khách hàng cũ",
+                                "Returning customer"
+                            )}
+                        </h2>
+
+                        <p class="account-description">
+                            ${text(
+                                "Nếu bạn đã có tài khoản Duy Fashion, hãy đăng nhập để tiếp tục mua sắm.",
+                                "If you already have a Duy Fashion account, sign in to continue shopping."
+                            )}
+                        </p>
+
+                        <div class="account-group">
+
+                            <label>
+                                Email *
+                            </label>
+
+                            <input
+                                type="email"
+                                id="loginEmail"
+                                placeholder="example@gmail.com"
+                            >
+
+                        </div>
+
+                        <div class="account-group">
+
+                            <label>
+                                ${text(
+                                    "Mật khẩu",
+                                    "Password"
+                                )} *
+                            </label>
+
+                            <div class="password-box">
+
+                                <input
+                                    type="password"
+                                    id="loginPassword"
+                                    placeholder="${text(
+                                        "Nhập mật khẩu",
+                                        "Enter password"
+                                    )}"
+                                >
+
+                                <button
+                                    class="show-password"
+                                    type="button"
+                                    onclick="hienMatKhau('loginPassword', this)"
+                                >
+                                    ${text("HIỆN", "SHOW")}
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                        <div class="login-options">
+
+                            <label class="remember">
+
+                                <input
+                                    type="checkbox"
+                                    id="rememberLogin"
+                                >
+
+                                <span>
+                                    ${text(
+                                        "Ghi nhớ đăng nhập",
+                                        "Remember me"
+                                    )}
+                                </span>
+
+                            </label>
+
+                            <button
+                                type="button"
+                                class="forgot"
+                                onclick="quenMatKhau()"
+                            >
+                                ${text(
+                                    "Quên mật khẩu?",
+                                    "Forgot password?"
+                                )}
+                            </button>
+
+                        </div>
+
+                        <button
+                            class="account-button"
+                            type="button"
+                            onclick="dangNhapTaiKhoan()"
+                        >
+                            ${text(
+                                "ĐĂNG NHẬP",
+                                "SIGN IN"
+                            )}
+                        </button>
+
+                    </section>
+
+                    <section class="account-register">
+
+                        <p class="account-small">
+                            NEW CUSTOMER
+                        </p>
+
+                        <h2>
+                            ${text(
+                                "Khách hàng mới",
+                                "New customer"
+                            )}
+                        </h2>
+
+                        <p class="account-description">
+                            ${text(
+                                "Tạo tài khoản Duy Fashion để có trải nghiệm mua sắm thuận tiện hơn.",
+                                "Create a Duy Fashion account for a more convenient shopping experience."
+                            )}
+                        </p>
+
+                        <div class="register-benefits">
+
+                            <div>
+                                <span>✓</span>
+
+                                <section>
+                                    <strong>
+                                        ${text(
+                                            "Theo dõi đơn hàng",
+                                            "Track orders"
+                                        )}
+                                    </strong>
+
+                                    <p>
+                                        ${text(
+                                            "Xem lại các đơn hàng đã đặt",
+                                            "Review your previous orders"
+                                        )}
+                                    </p>
+                                </section>
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+
+                                <section>
+                                    <strong>
+                                        ${text(
+                                            "Sản phẩm yêu thích",
+                                            "Favorite products"
+                                        )}
+                                    </strong>
+
+                                    <p>
+                                        ${text(
+                                            "Lưu những sản phẩm bạn quan tâm",
+                                            "Save products you are interested in"
+                                        )}
+                                    </p>
+                                </section>
+                            </div>
+
+                            <div>
+                                <span>✓</span>
+
+                                <section>
+                                    <strong>
+                                        ${text(
+                                            "Mua sắm nhanh hơn",
+                                            "Faster shopping"
+                                        )}
+                                    </strong>
+
+                                    <p>
+                                        ${text(
+                                            "Trải nghiệm website thuận tiện hơn",
+                                            "Enjoy a more convenient shopping experience"
+                                        )}
+                                    </p>
+                                </section>
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="account-button-light"
+                            type="button"
+                            onclick="moDangKy()"
+                        >
+                            ${text(
+                                "TẠO TÀI KHOẢN",
+                                "CREATE ACCOUNT"
+                            )}
+                        </button>
+
+                        <div
+                            class="register-form"
+                            id="registerForm"
+                        >
+
+                            <div class="account-group">
+
+                                <label>
+                                    ${text(
+                                        "Họ và tên",
+                                        "Full name"
+                                    )} *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="registerName"
+                                    placeholder="${text(
+                                        "Nhập họ và tên",
+                                        "Enter your full name"
+                                    )}"
+                                >
+
+                            </div>
+
+                            <div class="account-group">
+
+                                <label>
+                                    Email *
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="registerEmail"
+                                    placeholder="example@gmail.com"
+                                >
+
+                            </div>
+
+                            <div class="account-group">
+
+                                <label>
+                                    ${text(
+                                        "Số điện thoại",
+                                        "Phone number"
+                                    )}
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="registerPhone"
+                                    placeholder="${text(
+                                        "Nhập số điện thoại",
+                                        "Enter phone number"
+                                    )}"
+                                >
+
+                            </div>
+
+                            <div class="account-group">
+
+                                <label>
+                                    ${text(
+                                        "Mật khẩu",
+                                        "Password"
+                                    )} *
+                                </label>
+
+                                <div class="password-box">
+
+                                    <input
+                                        type="password"
+                                        id="registerPassword"
+                                        placeholder="${text(
+                                            "Tối thiểu 6 ký tự",
+                                            "At least 6 characters"
+                                        )}"
+                                    >
+
+                                    <button
+                                        class="show-password"
+                                        type="button"
+                                        onclick="hienMatKhau('registerPassword', this)"
+                                    >
+                                        ${text("HIỆN", "SHOW")}
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                class="account-button"
+                                type="button"
+                                onclick="dangKyTaiKhoan()"
+                            >
+                                ${text(
+                                    "ĐĂNG KÝ",
+                                    "REGISTER"
+                                )}
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>
+            `;
+        }
+
+        function moDangKy() {
+            let form =
+                document.getElementById("registerForm");
+
+            form.classList.toggle("show");
+
+            if (form.classList.contains("show")) {
+                form.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            }
+        }
+
+        function hienMatKhau(id, button) {
+            let input =
+                document.getElementById(id);
+
+            if (input.type === "password") {
+                input.type = "text";
+
+                button.textContent =
+                    text("ẨN", "HIDE");
+            } else {
+                input.type = "password";
+
+                button.textContent =
+                    text("HIỆN", "SHOW");
+            }
+        }
+
+        function dangKyTaiKhoan() {
+            let name =
+                document
+                    .getElementById("registerName")
+                    .value
+                    .trim();
+
+            let email =
+                document
+                    .getElementById("registerEmail")
+                    .value
+                    .trim();
+
+            let phone =
+                document
+                    .getElementById("registerPhone")
+                    .value
+                    .trim();
+
+            let password =
+                document
+                    .getElementById("registerPassword")
+                    .value;
+
+            if (!name || !email || !password) {
+                toast(
+                    text(
+                        "Vui lòng nhập đầy đủ họ tên, email và mật khẩu",
+                        "Please enter your name, email and password"
+                    )
+                );
+                return;
+            }
+
+            if (!email.includes("@")) {
+                toast(
+                    text(
+                        "Email chưa hợp lệ",
+                        "Invalid email address"
+                    )
+                );
+                return;
+            }
+
+            if (password.length < 6) {
+                toast(
+                    text(
+                        "Mật khẩu phải có ít nhất 6 ký tự",
+                        "Password must contain at least 6 characters"
+                    )
+                );
+                return;
+            }
+
+            let account = {
+                name: name,
+                email: email,
+                phone: phone,
+                password: password
+            };
+
+            localStorage.setItem(
+                "taiKhoan",
+                JSON.stringify(account)
+            );
+
+            toast(
+                text(
+                    "Đăng ký tài khoản thành công",
+                    "Account created successfully"
+                )
+            );
+
+            setTimeout(() => {
+                document.getElementById("loginEmail").value =
+                    email;
+
+                document.getElementById("loginPassword").focus();
+
+                window.scrollTo({
+                    top: 250,
+                    behavior: "smooth"
+                });
+            }, 500);
+        }
+
+        function dangNhapTaiKhoan() {
+            let email =
+                document
+                    .getElementById("loginEmail")
+                    .value
+                    .trim();
+
+            let password =
+                document
+                    .getElementById("loginPassword")
+                    .value;
+
+            let account =
+                layTaiKhoan();
+
+            if (!email || !password) {
+                toast(
+                    text(
+                        "Vui lòng nhập email và mật khẩu",
+                        "Please enter your email and password"
+                    )
+                );
+                return;
+            }
+
+            if (!account) {
+                toast(
+                    text(
+                        "Bạn chưa có tài khoản. Hãy đăng ký trước.",
+                        "You do not have an account yet. Please register first."
+                    )
+                );
+                return;
+            }
+
+            if (
+                email !== account.email ||
+                password !== account.password
+            ) {
+                toast(
+                    text(
+                        "Email hoặc mật khẩu không đúng",
+                        "Incorrect email or password"
+                    )
+                );
+                return;
+            }
+
+            let login = {
+                name: account.name,
+                email: account.email,
+                phone: account.phone
+            };
+
+            localStorage.setItem(
+                "dangNhap",
+                JSON.stringify(login)
+            );
+
+            toast(
+                text(
+                    "Đăng nhập thành công",
+                    "Signed in successfully"
+                )
+            );
+
+            setTimeout(() => {
+                location.reload();
+            }, 600);
+        }
+
+        function dangXuat() {
+            localStorage.removeItem("dangNhap");
+
+            toast(
+                text(
+                    "Đã đăng xuất",
+                    "Signed out"
+                )
+            );
+
+            setTimeout(() => {
+                location.reload();
+            }, 500);
+        }
+
+        function quenMatKhau() {
+            let account =
+                layTaiKhoan();
+
+            if (!account) {
+                toast(
+                    text(
+                        "Chưa có tài khoản được đăng ký",
+                        "No registered account found"
+                    )
+                );
+                return;
+            }
+
+            alert(
+                text(
+                    "Đây là website demo.\nBạn có thể tạo lại tài khoản nếu quên mật khẩu.",
+                    "This is a demo website.\nYou can create the account again if you forgot your password."
+                )
+            );
+        }
+
+        function dichTrangTaiKhoan() {
+            if (ngonNgu !== "en") {
+                return;
+            }
+
+            document.getElementById(
+                "accountMainTitle"
+            ).textContent = "ACCOUNT";
+
+            document.getElementById(
+                "accountSubtitle"
+            ).textContent =
+                "Sign in or create an account for a more convenient shopping experience";
+
+            document.getElementById(
+                "feature1Title"
+            ).textContent =
+                "SAVE FAVORITE PRODUCTS";
+
+            document.getElementById(
+                "feature1Text"
+            ).textContent =
+                "Save products you are interested in";
+
+            document.getElementById(
+                "feature2Title"
+            ).textContent =
+                "TRACK ORDERS";
+
+            document.getElementById(
+                "feature2Text"
+            ).textContent =
+                "Quickly check your order status";
+
+            document.getElementById(
+                "feature3Title"
+            ).textContent =
+                "CONVENIENT SHOPPING";
+
+            document.getElementById(
+                "feature3Text"
+            ).textContent =
+                "Enjoy simple shopping at Duy Fashion";
+        }
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+                setTimeout(() => {
+                    hienThiTaiKhoan();
+                    dichTrangTaiKhoan();
+                }, 50);
+            }
+        );
+    </script>
+
+</body>
+
+</html>
