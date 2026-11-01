@@ -225,13 +225,11 @@ function header() {
 
     let tenKhach =
         dangNhap.name ||
-        taiKhoan.name ||
         user ||
         "";
 
     let emailKhach =
         dangNhap.email ||
-        taiKhoan.email ||
         "";
 
     let avatar =
